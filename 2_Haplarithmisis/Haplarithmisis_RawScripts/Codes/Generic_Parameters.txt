@@ -1,0 +1,10 @@
+Param	Value
+plateau	100
+gammaSC	14
+gammaMC	14
+Window	22
+bin	10000
+Win	10
+ExcInt	1
+gammaBAF	5
+GC_File	SeqStat_MissCarr_Window10000.txt	
