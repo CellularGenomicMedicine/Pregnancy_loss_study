@@ -10,7 +10,7 @@ library(ggpp)
 ###ConvKaryo plot
 {
 #Plot colors for indications
-source("~/Surfdrive/ClinicalGenetics/Miscarriage/Paper/Indication_colors.R")
+source("/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/1.Paper/Scripts/Github/5_DataAnalysis_Plotting_Statistics/Plotting/functions/Indication_colors.R")
 
 #Load and alter input data
 Demographic_data_TOTAL              <- read.csv("/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/1.Paper/Data/20221027_Miscarr_PerFamily.csv", sep=";")
@@ -23,23 +23,26 @@ Demographic_data_ConvKaryo_Abnormal$Classification_ConvKaryo_Poly <- factor(Demo
 Order <- c("Autosomal \n monosomy","Structural \n rearrangement","Others","Combined \n abnormalities","Gonosomal \n aneuploidy","Polyploidy","Autosomal \n trisomy")
 
 #Load function position_stack_and_nudge
-sapply("/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/1.Paper/PlottingScripts/PositionStackandNudge.R", FUN=source)
+sapply("/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/1.Paper/Scripts/Github/5_DataAnalysis_Plotting_Statistics/Plotting/functions/PositionStackandNudge.R", FUN=source)
 
 #Plotting function
 Demographic_data_ConvKaryo_PieChart <- ggplot(Demographic_data_ConvKaryo_Abnormal, aes(x="", fill = Classification_ConvKaryo_Poly)) +
   geom_bar(stat = "count") +
   coord_polar("y", start = 0) +
-  ggtitle("Coventional karyotyping \n (n = 1745)") +
+  ggtitle("Coventional karyotyping \n (n = 879)") +
   theme_minimal() +
   theme(axis.title.x = element_blank(), axis.title.y = element_blank(), panel.grid = element_blank(),
         axis.ticks = element_blank(), axis.text = element_blank(), plot.title = element_text(hjust = 0.5), legend.title = element_blank(), legend.text = element_text(size = 16)) +
-  geom_text(aes(label = paste0("\n", percent(..count../884)), x = 1.7), position = position_stack(vjust = 0.5), stat = "count", size = 6) +
+  geom_text(aes(label = paste0("\n", percent(..count../879)), x = 1.7), position = position_stack(vjust = 0.5), stat = "count", size = 6) +
   scale_fill_manual(values = c(color_Aut_mon,color_Str,color_Oth,color_Com_ab,color_Gon,color_Tetra,color_Aut_tri)) 
 Demographic_data_ConvKaryo_PieChart
 
-ggsave("/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/Figures/PieChart_ConvKaryo/ConvKaryo_Pie2.pdf", width = 12.1, height = 8.18)
-ggsave("/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/Figures/PieChart_ConvKaryo/ConvKaryo_Pie2.png", width = 12.1, height = 8.18)
-ggsave("/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/Figures/PieChart_ConvKaryo/ConvKaryo_Pie2.svg", width = 12.1, height = 8.18)
+ggsave(plot = Demographic_data_ConvKaryo_PieChart, width = 12.1, height = 8.18,
+       "/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/1.Paper/Figures/2023/ConvKaryo_Pie_Abnormal.pdf")
+ggsave(plot = Demographic_data_ConvKaryo_PieChart, width = 12.1, height = 8.18,
+       "/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/1.Paper/Figures/2023/ConvKaryo_Pie_Abnormal.png")
+ggsave(plot = Demographic_data_ConvKaryo_PieChart, width = 12.1, height = 8.18,
+       "/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/1.Paper/Figures/2023/ConvKaryo_Pie_Abnormal.svg")
 }
 
 
@@ -48,8 +51,8 @@ ggsave("/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/Figures/Pi
 rm(list=ls(all=T))
 
 #Plot colors for indications
-source("~/Surfdrive/ClinicalGenetics/Miscarriage/Paper/Indication_colors.R")
-
+source("/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/1.Paper/Scripts/Github/5_DataAnalysis_Plotting_Statistics/Plotting/functions/Indication_colors.R")
+  
 #Load and alter input data
 Demographic_data_TOTAL              <- read.csv("/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/1.Paper/Data/20221027_Miscarr_PerFamily.csv", sep=";")
 Demographic_data_SNPHapla_Abnormal     <- subset(Demographic_data_TOTAL, Indication_SNPHapla == "Abnormal")
@@ -58,13 +61,13 @@ Demographic_data_SNPHapla_Abnormal$Classification_SNPHapla <- factor(Demographic
 Order <- c("Autosomal \n monosomy","Polyploidy","Structural \n rearrangement","Gonosomal \n aneuploidy","Combined \n abnormalities","Autosomal \n trisomy")
 
 #Load function position_stack_and_nudge
-sapply("/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/PositionStackandNudge.R", FUN=source)
+sapply("/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/1.Paper/Scripts/Github/5_DataAnalysis_Plotting_Statistics/Plotting/functions/PositionStackandNudge.R", FUN=source)
 
 #Plotting function
 Demographic_data_SNPHapla_PieChart <- ggplot(Demographic_data_SNPHapla_Abnormal, aes(x="", fill = Classification_SNPHapla)) +
   geom_bar(stat = "count") +
   coord_polar("y", start = 0) +
-  ggtitle("SNP Haplotyping \n (n = 111)") +
+  ggtitle("Genome haplarithmisis \n (n = 33)") +
   theme_minimal() +
   theme(axis.title.x = element_blank(), axis.title.y = element_blank(), panel.grid = element_blank(),
         axis.ticks = element_blank(), axis.text = element_blank(), plot.title = element_text(hjust = 0.5), legend.title = element_blank(), legend.text = element_text(size = 16)) +
@@ -73,9 +76,13 @@ Demographic_data_SNPHapla_PieChart <- ggplot(Demographic_data_SNPHapla_Abnormal,
   scale_fill_manual(values = c(color_Aut_mon,color_Tetra,color_Str,color_Gon,color_Com_ab,color_Aut_tri)) 
 Demographic_data_SNPHapla_PieChart
 
-ggsave("/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/Figures/PieChart_SNPHapla/SNPHapla_Pie2.pdf", width = 12.1, height = 8.18)
-ggsave("/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/Figures/PieChart_SNPHapla/SNPHapla_Pie2.png", width = 12.1, height = 8.18)
-ggsave("/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/Figures/PieChart_SNPHapla/SNPHapla_Pie2.svg", width = 12.1, height = 8.18)
+ggsave(plot = Demographic_data_SNPHapla_PieChart, width = 12.1, height = 8.18,
+       "/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/1.Paper/Figures/2023/SNPHapla_Pie_Abnormal.pdf")
+ggsave(plot = Demographic_data_SNPHapla_PieChart, width = 12.1, height = 8.18,
+       "/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/1.Paper/Figures/2023/SNPHapla_Pie_Abnormal.png")
+ggsave(plot = Demographic_data_SNPHapla_PieChart, width = 12.1, height = 8.18,
+       "/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/1.Paper/Figures/2023/SNPHapla_Pie_Abnormal.svg")
+
 }
 
 ###SNPHapla SPL plot
@@ -83,8 +90,8 @@ ggsave("/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/Figures/Pi
 rm(list=ls(all=T))
 
 #Plot colors for indications
-source("~/Surfdrive/ClinicalGenetics/Miscarriage/Paper/Indication_colors.R")
-
+source("/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/1.Paper/Scripts/Github/5_DataAnalysis_Plotting_Statistics/Plotting/functions/Indication_colors.R")
+  
 #Load and alter input data
 Demographic_data_TOTAL              <- read.csv("/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/1.Paper/Data/20221027_Miscarr_PerFamily.csv", sep=";")
 Demographic_data_SNPHapla_Abnormal      <- subset(Demographic_data_TOTAL, Indication_SNPHapla == "Abnormal")
@@ -94,13 +101,13 @@ Demographic_data_SNPHapla_Abnormal_SPL$Classification_SNPHapla <- factor(Demogra
 Order <- c("Structural \n rearrangement","Combined \n abnormalities","Autosomal \n trisomy")
 
 #Load function position_stack_and_nudge
-sapply("/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/PositionStackandNudge.R", FUN=source)
+sapply("/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/1.Paper/Scripts/Github/5_DataAnalysis_Plotting_Statistics/Plotting/functions/PositionStackandNudge.R", FUN=source)
 
 #Plotting function
 Demographic_data_SNPHapla_SPL_PieChart <- ggplot(Demographic_data_SNPHapla_Abnormal_SPL, aes(x="", fill = Classification_SNPHapla)) +
   geom_bar(stat = "count") +
   coord_polar("y", start = 0) +
-  ggtitle("SNP Haplotyping SPL \n (n = 42)") +
+  ggtitle("SNP Haplotyping SPL \n (n = 14)") +
   theme_minimal() +
   theme(axis.title.x = element_blank(), axis.title.y = element_blank(), panel.grid = element_blank(),
         axis.ticks = element_blank(), axis.text = element_blank(), plot.title = element_text(hjust = 0.5), legend.title = element_blank(), legend.text = element_text(size = 16)) +
@@ -109,10 +116,13 @@ Demographic_data_SNPHapla_SPL_PieChart <- ggplot(Demographic_data_SNPHapla_Abnor
   scale_fill_manual(values = c(color_Str,color_Com_ab,color_Aut_tri)) 
 Demographic_data_SNPHapla_SPL_PieChart
 
+ggsave(plot = Demographic_data_SNPHapla_SPL_PieChart, width = 12.1, height = 8.18,
+       "/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/1.Paper/Figures/2023/SNPHapla_SPL_Pie_Abnormal.pdf")
+ggsave(plot = Demographic_data_SNPHapla_SPL_PieChart, width = 12.1, height = 8.18,
+       "/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/1.Paper/Figures/2023/SNPHapla_SPL_Pie_Abnormal.png")
+ggsave(plot = Demographic_data_SNPHapla_SPL_PieChart, width = 12.1, height = 8.18,
+       "/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/1.Paper/Figures/2023/SNPHapla_SPL_Pie_Abnormal.svg")
 
-ggsave("/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/Figures/PieChart_SNPHapla/SNPHapla_SPL_Pie2.pdf", width = 12.1, height = 8.18)
-ggsave("/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/Figures/PieChart_SNPHapla/SNPHapla_SPL_Pie2.png", width = 12.1, height = 8.18)
-ggsave("/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/Figures/PieChart_SNPHapla/SNPHapla_SPL_Pie2.svg", width = 12.1, height = 8.18)
 }
 
 ###SNPHapla RPL plot
@@ -120,7 +130,8 @@ ggsave("/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/Figures/Pi
 rm(list=ls(all=T))
 
 #Plot colors for indications
-source("~/Surfdrive/ClinicalGenetics/Miscarriage/Paper/Indication_colors.R")
+source("/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/1.Paper/Scripts/Github/5_DataAnalysis_Plotting_Statistics/Plotting/functions/Indication_colors.R")
+  
 
 #Load and alter input data
 Demographic_data_TOTAL              <- read.csv("/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/1.Paper/Data/20221027_Miscarr_PerFamily.csv", sep=";")
@@ -131,13 +142,13 @@ Demographic_data_SNPHapla_Abnormal_RPL$Classification_SNPHapla <- factor(Demogra
 Order <- c("Autosomal \n monosomy","Combined \n abnormalities","Polyploidy","Gonosomal \n aneuploidy","Autosomal \n trisomy")
 
 #Load function position_stack_and_nudge
-sapply("/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/PositionStackandNudge.R", FUN=source)
+sapply("/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/1.Paper/Scripts/Github/5_DataAnalysis_Plotting_Statistics/Plotting/functions/PositionStackandNudge.R", FUN=source)
 
 #Plotting function
 Demographic_data_SNPHapla_RPL_PieChart <- ggplot(Demographic_data_SNPHapla_Abnormal_RPL, aes(x="", fill = Classification_SNPHapla)) +
   geom_bar(stat = "count") +
   coord_polar("y", start = 0) +
-  ggtitle("SNP Haplotyping RPL \n (n = 49)") +
+  ggtitle("SNP Haplotyping RPL \n (n = 19)") +
   theme_minimal() +
   theme(axis.title.x = element_blank(), axis.title.y = element_blank(), panel.grid = element_blank(),
         axis.ticks = element_blank(), axis.text = element_blank(), plot.title = element_text(hjust = 0.5), legend.title = element_blank(), legend.text = element_text(size = 16)) +
@@ -147,7 +158,11 @@ Demographic_data_SNPHapla_RPL_PieChart <- ggplot(Demographic_data_SNPHapla_Abnor
 Demographic_data_SNPHapla_RPL_PieChart
 
 
-ggsave("/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/Figures/PieChart_SNPHapla/SNPHapla_RPL_Pie2.pdf", width = 12.1, height = 8.18)
-ggsave("/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/Figures/PieChart_SNPHapla/SNPHapla_RPL_Pie2.png", width = 12.1, height = 8.18)
-ggsave("/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/Figures/PieChart_SNPHapla/SNPHapla_RPL_Pie2.svg", width = 12.1, height = 8.18)
+ggsave(plot = Demographic_data_SNPHapla_RPL_PieChart, width = 12.1, height = 8.18,
+       "/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/1.Paper/Figures/2023/SNPHapla_RPL_Pie_Abnormal.pdf")
+ggsave(plot = Demographic_data_SNPHapla_RPL_PieChart, width = 12.1, height = 8.18,
+       "/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/1.Paper/Figures/2023/SNPHapla_RPL_Pie_Abnormal.png")
+ggsave(plot = Demographic_data_SNPHapla_RPL_PieChart, width = 12.1, height = 8.18,
+       "/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/1.Paper/Figures/2023/SNPHapla_RPL_Pie_Abnormal.svg")
+
 }

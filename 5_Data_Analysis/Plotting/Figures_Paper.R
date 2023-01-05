@@ -1,5 +1,9 @@
+rm(list=ls(all=T))
+
 library(ggplot2)
 library(ggpattern)
+
+source("/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/1.Paper/Scripts/Github/5_DataAnalysis_Plotting_Statistics/Plotting/functions/Indication_colors.R")
 
 ###All chroms for MII, MI, Mitotic 
 {
@@ -16,6 +20,7 @@ Chrom_vs_SegOrigin <- ggplot(data=Affected_Chromosomes, aes(x=Aff_chr,fill = fac
         legend.title = element_blank()) + 
   scale_y_continuous(expand = c(0,0), limits = c(0,0.151)) + 
   scale_fill_discrete(breaks = Ordering3) +
+  scale_fill_manual(values = c("Meiotic II" = color_Meiotic_II, "Meiotic I" = color_Meiotic, "Mitotic" = color_Mitotic, "Mitotic & Meiotic " = color_Mitotic_and_meiotic, "NA" = color_NA)) +
   ylab("Proportion") 
 Chrom_vs_SegOrigin
 }
@@ -35,7 +40,7 @@ Chrom_vs_SegOrigin2 <- ggplot(data=Affected_Chromosomes, aes(x=Aff_chr,fill = fa
         legend.title = element_blank()) + 
   scale_y_continuous(expand = c(0,0), limits = c(0,0.151)) + 
   scale_fill_discrete(breaks = Ordering4) +
-  scale_fill_manual(values = c("Meiotic" = "#048F45", "Mitotic" = "#0CB702", "Mitotic & Meiotic " = "#92D895", "NA" = "#8C8C8C")) +
+  scale_fill_manual(values = c("Meiotic" = color_Meiotic, "Mitotic" = color_Mitotic, "Mitotic & Meiotic " = color_Mitotic_and_meiotic, "NA" = color_NA)) +
   ylab("Proportion") +
   xlab("Chromosome")
 Chrom_vs_SegOrigin2
@@ -55,7 +60,7 @@ Chrom_vs_ParOrigin <- ggplot(data=Affected_Chromosomes, aes(x=Aff_chr,fill = fac
   theme(legend.key.size = unit(0.8,'cm'), panel.background = element_blank(), axis.line = element_line(colour = "black"),
         legend.title = element_blank()) + 
   scale_y_continuous(expand = c(0,0), limits = c(0,0.151)) + 
-  scale_fill_manual(values = c("Maternal" = "#C77CFF", "Paternal" = "#F37735", "NA" = "#8C8C8C")) +
+  scale_fill_manual(values = c("Maternal" = color_Maternal, "Paternal" = color_Paternal, "NA" = color_NA)) +
   ylab("Proportion") +
   xlab("Chromosome")
 Chrom_vs_ParOrigin
@@ -75,7 +80,7 @@ ParOrigin_Plot3 <- ggplot(data = Parental_origin_plot, aes(x=Group, fill = facto
         axis.line = element_line(colour = "black"), legend.title = element_blank(), legend.position = "none") + 
   scale_y_continuous(expand = c(0,0)) +
   scale_fill_discrete(breaks = Ordering2) +
-  scale_fill_manual(values = c("Maternal" = "#C77CFF", "Paternal" = "#F37735", "NA" = "#8C8C8C")) +
+  scale_fill_manual(values = c("Maternal" = color_Maternal, "Paternal" = color_Paternal, "NA" = color_NA)) +
   geom_text(aes(label= ..count..), stat = 'count', position = position_fill(vjust=0.5)) +
   ylab("Proportion") +
   xlab("")
@@ -121,7 +126,7 @@ SegOrigin3_Plot <- ggplot(data=Affected_Chromosomes, aes(x=Group, fill = factor(
   theme(legend.key.size = unit(0.5,'cm'), panel.background = element_blank(), axis.line = element_line(colour = "black"),
         legend.title = element_blank(), legend.position = "none") + 
   scale_y_continuous(expand = c(0,0)) +
-  scale_fill_manual(values = c("Meiotic" = "#048F45", "Mitotic" = "#0CB702", "Mitotic & Meiotic " = "#92D895", "NA" = "#8C8C8C")) +
+  scale_fill_manual(values = c("Meiotic" = color_Meiotic, "Mitotic" = color_Mitotic, "Mitotic & Meiotic " = color_Mitotic_and_meiotic, "NA" = color_NA)) +
   geom_text(aes(label= ..count..), stat = 'count', position = position_fill(vjust=0.5)) +
   ylab("Proportion") +
   xlab("")

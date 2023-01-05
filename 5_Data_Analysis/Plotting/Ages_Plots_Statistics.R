@@ -4,6 +4,8 @@ library(ggplot2)
 library(ggpattern)
 library(ggsignif)
 
+source("/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/1.Paper/Scripts/Github/5_DataAnalysis_Plotting_Statistics/Plotting/functions/Indication_colors.R")
+
 ###Preprocessing of data files
 {
 PerFamily <- read.csv2("/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/1.Paper/Data/20221027_Miscarr_PerFamily.csv")
@@ -71,7 +73,7 @@ PerFamilyPatMatConvKaryo <- subset(PerFamilyPatMat, Group == "Conventional karyo
 TOTAL_AgesPlot_PatMat_ConvKaryo <- 
   ggplot(data=subset(PerFamilyPatMatConvKaryo, !is.na(All_Ages)), aes(x=Age_Type, y=All_Ages, fill=Indication, color = Indication)) + 
   geom_jitter(size = 0.5, alpha = 0.3, position = position_jitterdodge(0.2)) + 
-  scale_fill_manual(values = c("#00BFC4","#F8766D")) +
+  scale_fill_manual(values = c("Normal" = color_Normal,"Abnormal" = color_Abnormal)) +
   scale_color_manual(values = c("black","black")) +
   geom_boxplot(width = 0.5, position = position_dodge(width = 0.7), outlier.shape = NA) +
   theme(legend.key.size = unit(0.8,'cm'), panel.background = element_blank(), 
@@ -94,7 +96,7 @@ PerFamilyPatMatSNPHapla <- subset(PerFamilyPatMat, Group == "SNP haplotyping \n 
 TOTAL_AgesPlot_PatMat_SNPHapla <- 
   ggplot(data=subset(PerFamilyPatMatSNPHapla, !is.na(All_Ages)), aes(x=Age_Type, y=All_Ages, fill=Indication, color = Indication)) + 
   geom_jitter(size = 0.5, alpha = 0.3, position = position_jitterdodge(0.2)) + 
-  scale_fill_manual(values = c("#00BFC4","#F8766D")) +
+  scale_fill_manual(values = c("Normal" = color_Normal,"Abnormal" = color_Abnormal)) +
   scale_color_manual(values = c("black","black")) +
   geom_boxplot(width = 0.5, position = position_dodge(width = 0.7), outlier.shape = NA) +
   theme(legend.key.size = unit(0.8,'cm'), panel.background = element_blank(), 
@@ -128,7 +130,7 @@ PerFamilyPatMatConvKaryoGest <- subset(PerFamilyGest, Group == "Conventional kar
 TOTAL_AgesPlot_PatMat_ConvKaryo_Gest <- 
   ggplot(data=subset(PerFamilyPatMatConvKaryoGest, !is.na(All_Ages)), aes(x=Age_Type, y=All_Ages, fill=Indication, color = Indication)) + 
   geom_jitter(size = 0.5, alpha = 0.3, position = position_jitterdodge(0.2)) + 
-  scale_fill_manual(values = c("#00BFC4","#F8766D")) +
+  scale_fill_manual(values = c("Normal" = color_Normal,"Abnormal" = color_Abnormal)) +
   scale_color_manual(values = c("black","black")) +
   geom_boxplot(width = 0.5, position = position_dodge(width = 0.7), outlier.shape = NA) +
   theme(legend.key.size = unit(0.8,'cm'), panel.background = element_blank(), 
@@ -149,7 +151,7 @@ PerFamilyPatMatSNPHaplaGest <- subset(PerFamilyGest, Group == "SNP Haplotyping \
 TOTAL_AgesPlot_PatMat_SNPHapla_Gest <- 
   ggplot(data=subset(PerFamilyPatMatSNPHaplaGest, !is.na(All_Ages)), aes(x=Age_Type, y=All_Ages, fill=Indication, color = Indication)) + 
   geom_jitter(size = 0.5, alpha = 0.3, position = position_jitterdodge(0.2)) + 
-  scale_fill_manual(values = c("#00BFC4","#F8766D")) +
+  scale_fill_manual(values = c("Normal" = color_Normal,"Abnormal" = color_Abnormal)) +
   scale_color_manual(values = c("black","black")) +
   geom_boxplot(width = 0.5, position = position_dodge(width = 0.7), outlier.shape = NA) +
   theme(legend.key.size = unit(0.8,'cm'), panel.background = element_blank(), 

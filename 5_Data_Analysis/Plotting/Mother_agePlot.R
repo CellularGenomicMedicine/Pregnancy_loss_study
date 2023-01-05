@@ -4,12 +4,11 @@ library(ggplot2)
 library(ggpattern)
 library(ggsignif)
 
+source("/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/1.Paper/Scripts/Github/5_DataAnalysis_Plotting_Statistics/Plotting/functions/Indication_colors.R")
+
 PerFamily <- read.csv2("/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/1.Paper/Data/20221027_Miscarr_PerFamily.csv")
-
 Ages_PerFamily <- subset(PerFamily, Group == "SNPHapla")
-
 Ages_PerFamily$Group <- gsub('SNPHapla', 'SNP Haplotyping \n (n = 91)',Ages_PerFamily$Group)
-
 Ages_PerFamily <- subset(Ages_PerFamily, Indication_SNPHapla != "Excluded")
 
 
@@ -121,7 +120,7 @@ Ages_PerFamily$Indication_SNPHapla <- factor(Ages_PerFamily$Indication_SNPHapla,
 All_age_Mother_plot <- ggplot(data= subset(Ages_PerFamily, !is.na(Mat_Age_Bin)), aes(fill =  Indication_SNPHapla, x = Mat_Age_Bin)) +
   geom_bar(position = 'fill', stat = 'count', width = 0.5) +
   scale_y_continuous(expand = c(0,0), labels = scales::percent) +
-  scale_fill_manual(values = c("#00BFC4","#F8766D")) +
+  scale_fill_manual(values = c("Normal" = color_Normal, "Abnormal" = color_Abnormal)) +
   theme(plot.title = element_text(hjust = 0.5), legend.title = element_blank(), axis.title.y = element_blank(), panel.background = element_blank(),axis.line = element_line(colour = "black")) + 
   scale_x_discrete(labels=c(expression(""<=24),"25-29","30-34","35-39",expression("">=40))) +
   geom_text(aes(label= ..count..), stat = 'count', position = position_fill(vjust=0.5)) +
@@ -137,22 +136,24 @@ ggsave(plot = All_age_Mother_plot, width = 6, height = 5,
 
 ###RPL and SPL split
 {
-All_age_Mother$Age_bin <- factor(All_age_Mother$Age_bin, levels = c("LowerThan24","25-29","30-34","35-39","HigherThan40"))
-All_age_Mother$Indication <- factor(All_age_Mother$Indication, levels = c("Normal","Abnormal"))
+Ages_PerFamily$Mat_Age_Bin <- factor(Ages_PerFamily$Mat_Age_Bin, levels = c("LowerThan24","25-29","30-34","35-39","HigherThan40"))
+Ages_PerFamily$Indication_SNPHapla <- factor(Ages_PerFamily$Indication_SNPHapla, levels = c("Normal","Abnormal"))
 
-plottest <- ggplot(data= subset(All_age_Mother, !is.na(Age_bin)), aes(fill =  Indication, x = Age_bin)) +
+All_age_Mother_plot_Split <- ggplot(data= subset(Ages_PerFamily, !is.na(Mat_Age_Bin)), aes(fill =  Indication_SNPHapla, x = Mat_Age_Bin)) +
               geom_bar(position = 'fill', stat = 'count', width = 0.5) +
-              facet_wrap( ~Group) +
-              scale_fill_manual(values = c("#00BFC4","#F8766D")) +
+              facet_wrap( ~Group2) +
+              scale_fill_manual(values = c("Normal" = color_Normal, "Abnormal" = color_Abnormal)) +
               scale_y_continuous(expand = c(0,0), labels = scales::percent) +
-              theme(axis.title.x = element_blank(), axis.title.y = element_blank()) +
+              theme(axis.title.x = element_blank(), axis.title.y = element_blank(), panel.background = element_blank(), axis.line = element_line(colour = "black")) +
               scale_x_discrete(labels=c(expression(""<=24),"25-29","30-34","35-39",expression("">=40))) +
               geom_text(aes(label= ..count..), stat = 'count', position = position_fill(vjust=0.5)) +
               xlab("Maternal age (in years)")
-plottest
+All_age_Mother_plot_Split
 
-ggsave("/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/Figures/AgePlot/Age_Split_Mother.pdf")
-ggsave("/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/Figures/AgePlot/Age_Split_Mother.png")
+ggsave(plot = All_age_Mother_plot_Split, width = 10, height = 5,
+       "/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/Figures/AgePlot/Age_Split_Mother.pdf")
+ggsave(plot = All_age_Mother_plot_Split, width = 10, height = 5,
+       "/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/Figures/AgePlot/Age_Split_Mother.png")
 }
 
 ###RPL mat
@@ -163,7 +164,7 @@ Ages_PerFamily_RPL$Mat_Age_Bin <- factor(Ages_PerFamily_RPL$Mat_Age_Bin, levels 
 All_age_Mother_RPLplot <- ggplot(data=subset(Ages_PerFamily_RPL,!is.na(Mat_Age_Bin)), aes(fill =  Indication_SNPHapla, x = Mat_Age_Bin)) +
   geom_bar(position = 'fill', stat = 'count', width = 0.5) +
   scale_y_continuous(expand = c(0,0), labels = scales::percent) +
-  scale_fill_manual(values = c("#00BFC4","#F8766D")) +
+  scale_fill_manual(values = c("Normal" = color_Normal, "Abnormal" = color_Abnormal)) +
   ggtitle("RPL") +
   theme(plot.title = element_text(hjust = 0.5), legend.title = element_blank(), axis.title.y = element_blank(), panel.background = element_blank(),axis.line = element_line(colour = "black")) + 
   scale_x_discrete(labels=c(expression(""<=24),"25-29","30-34","35-39",expression("">=40))) +
@@ -185,7 +186,7 @@ Ages_PerFamily_SPL$Mat_Age_Bin <- factor(Ages_PerFamily_SPL$Mat_Age_Bin, levels 
 All_age_Mother_SPLplot <- ggplot(data= subset(Ages_PerFamily_SPL, !is.na(Mat_Age_Bin)), aes(fill =  Indication_SNPHapla, x = Mat_Age_Bin)) +
   geom_bar(position = 'fill', stat = 'count', width = 0.5) +
   scale_y_continuous(expand = c(0,0), labels = scales::percent) +
-  scale_fill_manual(values = c("#00BFC4","#F8766D")) +
+  scale_fill_manual(values = c("Normal" = color_Normal, "Abnormal" = color_Abnormal)) +
   ggtitle("SPL") +
   theme(plot.title = element_text(hjust = 0.5), legend.title = element_blank(), axis.title.y = element_blank(), panel.background = element_blank(),axis.line = element_line(colour = "black")) + 
   scale_x_discrete(labels=c(expression(""<=24),"25-29","30-34","35-39",expression("">=40), "NA")) +
@@ -208,7 +209,7 @@ Ages_PerFamily$Indication_SNPHapla <- factor(Ages_PerFamily$Indication_SNPHapla,
 All_age_Father_plot <- ggplot(data= subset(Ages_PerFamily, !is.na(Pat_Age_Bin)), aes(fill =  Indication_SNPHapla, x = Pat_Age_Bin)) +
   geom_bar(position = 'fill', stat = 'count', width = 0.5) +
   scale_y_continuous(expand = c(0,0), labels = scales::percent) +
-  scale_fill_manual(values = c("#00BFC4","#F8766D")) +
+  scale_fill_manual(values = c("Normal" = color_Normal, "Abnormal" = color_Abnormal)) +
   theme(plot.title = element_text(hjust = 0.5), legend.title = element_blank(), axis.title.y = element_blank(), panel.background = element_blank(),axis.line = element_line(colour = "black")) + 
   scale_x_discrete(labels=c(expression(""<=24),"25-29","30-34","35-39",expression("">=40))) +
   geom_text(aes(label= ..count..), stat = 'count', position = position_fill(vjust=0.5)) +
@@ -230,7 +231,7 @@ Ages_PerFamily_RPL$Pat_Age_Bin <- factor(Ages_PerFamily_RPL$Pat_Age_Bin, levels 
 All_age_Father_RPLplot <- ggplot(data=subset(Ages_PerFamily_RPL,!is.na(Pat_Age_Bin)), aes(fill =  Indication_SNPHapla, x = Pat_Age_Bin)) +
   geom_bar(position = 'fill', stat = 'count', width = 0.5) +
   scale_y_continuous(expand = c(0,0), labels = scales::percent) +
-  scale_fill_manual(values = c("#00BFC4","#F8766D")) +
+  scale_fill_manual(values = c("Normal" = color_Normal, "Abnormal" = color_Abnormal)) +
   ggtitle("RPL") +
   theme(plot.title = element_text(hjust = 0.5), legend.title = element_blank(), axis.title.y = element_blank(), panel.background = element_blank(),axis.line = element_line(colour = "black")) + 
   scale_x_discrete(labels=c(expression(""<=24),"25-29","30-34","35-39",expression("">=40))) +
@@ -252,7 +253,7 @@ Ages_PerFamily_SPL$Pat_Age_Bin <- factor(Ages_PerFamily_SPL$Pat_Age_Bin, levels 
 All_age_Father_SPLplot <- ggplot(data= subset(Ages_PerFamily_SPL, !is.na(Pat_Age_Bin)), aes(fill =  Indication_SNPHapla, x = Pat_Age_Bin)) +
   geom_bar(position = 'fill', stat = 'count', width = 0.5) +
   scale_y_continuous(expand = c(0,0), labels = scales::percent) +
-  scale_fill_manual(values = c("#00BFC4","#F8766D")) +
+  scale_fill_manual(values = c("Normal" = color_Normal, "Abnormal" = color_Abnormal)) +
   ggtitle("SPL") +
   theme(plot.title = element_text(hjust = 0.5), legend.title = element_blank(), axis.title.y = element_blank(), panel.background = element_blank(),axis.line = element_line(colour = "black")) + 
   scale_x_discrete(labels=c(expression(""<=24),"25-29","30-34","35-39",expression("">=40), "NA")) +
@@ -269,68 +270,68 @@ ggsave(plot = All_age_Father_SPLplot, width = 6, height = 5,
 
 ###RPL and SPL Gest age
 {
-  Ages_PerFamily$Gest_Age_Bin <- factor(Ages_PerFamily$Gest_Age_Bin, levels = c("4-5","6-7","8-9","10-13"))
-  Ages_PerFamily$Indication_SNPHapla <- factor(Ages_PerFamily$Indication_SNPHapla, levels = c("Normal","Abnormal"))
+Ages_PerFamily$Gest_Age_Bin <- factor(Ages_PerFamily$Gest_Age_Bin, levels = c("4-5","6-7","8-9","10-13"))
+Ages_PerFamily$Indication_SNPHapla <- factor(Ages_PerFamily$Indication_SNPHapla, levels = c("Normal","Abnormal"))
   
-  All_age_Gest_plot <- ggplot(data= subset(Ages_PerFamily, !is.na(Gest_Age_Bin)), aes(fill =  Indication_SNPHapla, x = Gest_Age_Bin)) +
+All_age_Gest_plot <- ggplot(data= subset(Ages_PerFamily, !is.na(Gest_Age_Bin)), aes(fill =  Indication_SNPHapla, x = Gest_Age_Bin)) +
     geom_bar(position = 'fill', stat = 'count', width = 0.5) +
     scale_y_continuous(expand = c(0,0), labels = scales::percent) +
-    scale_fill_manual(values = c("#00BFC4","#F8766D")) +
+    scale_fill_manual(values = c("Normal" = color_Normal, "Abnormal" = color_Abnormal)) +
     theme(plot.title = element_text(hjust = 0.5), legend.title = element_blank(), axis.title.y = element_blank(), panel.background = element_blank(),axis.line = element_line(colour = "black")) + 
     scale_x_discrete(labels=c("4-5","6-7","8-9","10-13")) +
     geom_text(aes(label= ..count..), stat = 'count', position = position_fill(vjust=0.5)) +
     xlab("Gestational age (in weeks)") +
     ggtitle("Genome haplarithmisis") 
-  All_age_Gest_plot
+All_age_Gest_plot
   
-  ggsave(plot = All_age_Gest_plot, width = 6, height = 5,
-         "/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/1.Paper/Figures/Supplementary/Age_All_Gest2.pdf")
-  ggsave(plot = All_age_Gest_plot, width = 6, height = 5,
-         "/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/1.Paper/Figures/Supplementary/Age_All_Gest2.png")
+ggsave(plot = All_age_Gest_plot, width = 6, height = 5,
+        "/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/1.Paper/Figures/Supplementary/Age_All_Gest2.pdf")
+ggsave(plot = All_age_Gest_plot, width = 6, height = 5,
+        "/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/1.Paper/Figures/Supplementary/Age_All_Gest2.png")
   
   
-  ###RPL Gest
-  Ages_PerFamily_RPL <- Ages_PerFamily[which(Ages_PerFamily$Group2 == "RPL"),]
+##RPL Gest
+Ages_PerFamily_RPL <- Ages_PerFamily[which(Ages_PerFamily$Group2 == "RPL"),]
   
-  Ages_PerFamily_RPL$Gest_Age_Bin <- factor(Ages_PerFamily_RPL$Gest_Age_Bin, levels = c("4-5","6-7","8-9","10-13"))
+Ages_PerFamily_RPL$Gest_Age_Bin <- factor(Ages_PerFamily_RPL$Gest_Age_Bin, levels = c("4-5","6-7","8-9","10-13"))
   
-  All_age_Gest_RPLplot <- ggplot(data=subset(Ages_PerFamily_RPL,!is.na(Gest_Age_Bin)), aes(fill =  Indication_SNPHapla, x = Gest_Age_Bin)) +
+All_age_Gest_RPLplot <- ggplot(data=subset(Ages_PerFamily_RPL,!is.na(Gest_Age_Bin)), aes(fill =  Indication_SNPHapla, x = Gest_Age_Bin)) +
     geom_bar(position = 'fill', stat = 'count', width = 0.5) +
     scale_y_continuous(expand = c(0,0), labels = scales::percent) +
-    scale_fill_manual(values = c("#00BFC4","#F8766D")) +
+    scale_fill_manual(values = c("Normal" = color_Normal, "Abnormal" = color_Abnormal)) +
     ggtitle("RPL") +
     theme(plot.title = element_text(hjust = 0.5), legend.title = element_blank(), axis.title.y = element_blank(), panel.background = element_blank(),axis.line = element_line(colour = "black")) + 
     scale_x_discrete(labels=c("4-5","6-7","8-9","10-13")) +
     geom_text(aes(label= ..count..), stat = 'count', position = position_fill(vjust=0.5)) +
     xlab("Gestational age (in weeks)")
-  All_age_Gest_RPLplot
+All_age_Gest_RPLplot
   
-  ggsave(plot = All_age_Gest_RPLplot, width = 6, height = 5,
-         "/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/1.Paper/Figures/Supplementary/Age_All_Gest_RPL.pdf")
-  ggsave(plot = All_age_Gest_RPLplot, width = 6, height = 5,
-         "/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/1.Paper/Figures/Supplementary/Age_All_Gest_RPL.png")
+ggsave(plot = All_age_Gest_RPLplot, width = 6, height = 5,
+       "/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/1.Paper/Figures/Supplementary/Age_All_Gest_RPL.pdf")
+ggsave(plot = All_age_Gest_RPLplot, width = 6, height = 5,
+       "/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/1.Paper/Figures/Supplementary/Age_All_Gest_RPL.png")
   
   
-  ###SPL Gest 
-  Ages_PerFamily_SPL <- Ages_PerFamily[which(Ages_PerFamily$Group2 == "SPL"),]
+###SPL Gest 
+Ages_PerFamily_SPL <- Ages_PerFamily[which(Ages_PerFamily$Group2 == "SPL"),]
   
-  Ages_PerFamily_SPL$Gest_Age_Bin <- factor(Ages_PerFamily_SPL$Gest_Age_Bin, levels = c("4-5","6-7","8-9","10-13"))
+Ages_PerFamily_SPL$Gest_Age_Bin <- factor(Ages_PerFamily_SPL$Gest_Age_Bin, levels = c("4-5","6-7","8-9","10-13"))
   
-  All_age_Gest_SPLplot <- ggplot(data= subset(Ages_PerFamily_SPL, !is.na(Gest_Age_Bin)), aes(fill =  Indication_SNPHapla, x = Gest_Age_Bin)) +
+All_age_Gest_SPLplot <- ggplot(data= subset(Ages_PerFamily_SPL, !is.na(Gest_Age_Bin)), aes(fill =  Indication_SNPHapla, x = Gest_Age_Bin)) +
     geom_bar(position = 'fill', stat = 'count', width = 0.5) +
     scale_y_continuous(expand = c(0,0), labels = scales::percent) +
-    scale_fill_manual(values = c("#00BFC4","#F8766D")) +
+    scale_fill_manual(values = c("Normal" = color_Normal, "Abnormal" = color_Abnormal)) +
     ggtitle("SPL") +
     theme(plot.title = element_text(hjust = 0.5), legend.title = element_blank(), axis.title.y = element_blank(), panel.background = element_blank(),axis.line = element_line(colour = "black")) + 
     scale_x_discrete(labels=c("4-5","6-7","8-9","10-13")) +
     geom_text(aes(label= ..count..), stat = 'count', position = position_fill(vjust=0.5)) +
     xlab("Gestational age (in weeks)")
-  All_age_Gest_SPLplot
+All_age_Gest_SPLplot
   
-  ggsave(plot = All_age_Gest_SPLplot, width = 6, height = 5,
-         "/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/1.Paper/Figures/Supplementary/Age_All_Gest_SPL.pdf")
-  ggsave(plot = All_age_Gest_SPLplot, width = 6, height = 5,
-         "/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/1.Paper/Figures/Supplementary/Age_All_Gest_SPL.png")
+ggsave(plot = All_age_Gest_SPLplot, width = 6, height = 5,
+       "/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/1.Paper/Figures/Supplementary/Age_All_Gest_SPL.pdf")
+ggsave(plot = All_age_Gest_SPLplot, width = 6, height = 5,
+       "/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/1.Paper/Figures/Supplementary/Age_All_Gest_SPL.png")
 }
 
 #1
