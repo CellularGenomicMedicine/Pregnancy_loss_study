@@ -20,6 +20,11 @@ This paper is specifically on haplarithmisis on single cells however the pregnan
 The CNV detection script extracts genomic coordinates and aberrant segments based on LogR (copy-number) segments produced by haplarithmisis. The segments of logR are extracted by grouping consecutive genomic coordinates together that have identical logR values. The resulting table provides the genomic coordinates and size of any segmental aberration. The logR segmentation algorithm of haplarithmisis can be adjusted by changes the gamma values for LogR, in the pregnancy loss study gamma of 14 is used. This value requires optimization for the specific samples that are being analyzed. 
 
 ## 4.	Mosaicism detection
+### 4.1 Paternal/maternal haplotype segmentation. 
+
+### 4.2 BAF averaging.
+
+### 4.3 Mosacism detection. 
 
 ## 5.	DataAnalysis, plotting and statistics
 
