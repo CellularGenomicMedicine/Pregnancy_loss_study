@@ -26,6 +26,6 @@ The CNV detection script extracts genomic coordinates and aberrant segments base
 
 ### 4.3 Mosacism detection 
 Ref conlin et all paper
-## 5.	DataAnalysis, plotting and statistics
+## 5.	Data analysis, plotting and statistics
 
 ## Miscellaneous
