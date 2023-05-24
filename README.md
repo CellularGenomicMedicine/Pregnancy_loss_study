@@ -14,7 +14,7 @@ The produced haplarithm plots contain BAF, LogR, and haplotyping information on 
 
 More on haplarithmisis: 
 https://doi.org/10.1016/j.ajhg.2015.04.011
-This paper is specifically on haplarithmisis on single cells however the pregnancy loss study utilizes bulk DNA samples. 
+This paper is specifically on haplarithmisis applied to single cells however the pregnancy loss study utilizes bulk DNA samples. 
 
 ## 3.	CNV detection
 The CNV detection script extracts genomic coordinates and aberrant segments based on LogR (copy-number) segments produced by haplarithmisis. The segments of logR are extracted by grouping consecutive genomic coordinates together that have identical logR values. The resulting table provides the genomic coordinates and size of any segmental aberration. The logR segmentation algorithm of haplarithmisis can be adjusted by changes the gamma values for LogR, in the pregnancy loss study gamma of 14 is used. This value requires optimization for the specific samples that are being analyzed. 
