@@ -1,7 +1,17 @@
+###########################################################################################################################
+# Author: Rick Essers
+# Lab: Cellular Genomic Medicine, Clinical Genetics, Maastricht University Medical Center (MUMC+)
 
-###Samples_2021_02_19
-dataPath<- "/ifs/data/research/CGM/Projects/Miscarr/2021/"
-outPath <- "/ifs/data/research/CGM/Projects/Miscarr/2021/Families/"
+# script purpose: To convert SNP genotyping raw data into data that is compatible with haplarithmisis. To extract individual family data files from the raw SNP genotyping data file.
+
+# input: Raw SNP genotyping data from the 2nd run (out of 3 total), available on GEO (GSE228151).
+
+# output: Data files for individual pregnancy loss families that are compatible with haplarithmisis (format: .adj). 
+
+###########################################################################################################################
+
+dataPath<- "/Projects/PregnancyLoss/Data/Raw/"
+outPath <- "/Projects/PregnancyLoss/Data/Processed/"
 
 data <- read.table(paste0(dataPath,"MiscarrSamples_2021_02_19.txt"),sep="\t",header=T,nrow=1)
 dataAll <- read.table(paste0(dataPath,"MiscarrSamples_2021_02_19.txt"),sep="\t",header=T)
@@ -17,5 +27,5 @@ for(f in Fams){
 
   print(f)
   write.table(dataOut, paste0(outPath,f,".adj"),col.names=T,row.names=F,quote=F,sep="\t") 
-}#end f loop
+}
 
