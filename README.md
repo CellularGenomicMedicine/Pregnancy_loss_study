@@ -2,7 +2,7 @@
 
 In this study we applied genome haplarithmisis to 94 miscarried products of conception (POCs) with normal parental and POC karyotypes. Utilizing parental DNA as well as POC extraembryonic mesoderm (EM) and chorionic villi (CV) DNA, representing embryonic and trophoblastic tissues, enabled characterization of the genomic landscape of both lineages. In contrast to viable pregnancies where mosaic chromosomal abnormalities are often restricted to CV, such as confined placental mosaicism, we found that in PLs, the situation is reversed with a higher degree of mosaic chromosomal imbalances in EM rather than CV, indicating that the aberrations originate by the end of the first embryonic week, before blastocyst formation. Our results stress the critical importance of scrutinizing the full allelic architecture of genomic abnormalities in pregnancy loss to improve the clinical management and basic research of this devastating condition.
 
-## 1.	DataConversion
+## 1.	Data conversion
 SNP genotyping for the pregnancy loss study was performed in three runs. Raw genotyping data was converted into data that is compatible with haplarithmisis. 
 Each run has its individual scripts to convert the raw genotyping data, however the steps and goal of these scripts generally are the same; 1. Extracting individual families based on unique PL code per family. 2. Converting column names to be haplarithmisis compatible. 
 
@@ -16,11 +16,11 @@ More on haplarithmisis:
 https://doi.org/10.1016/j.ajhg.2015.04.011
 This paper is specifically on haplarithmisis on single cells however the pregnancy loss study utilizes bulk DNA samples. 
 
-## 3.	CNV_Detection
+## 3.	CNV detection
 The CNV detection script extracts genomic coordinates and aberrant segments based on LogR (copy-number) segments produced by haplarithmisis. The segments of logR are extracted by grouping consecutive genomic coordinates together that have identical logR values. The resulting table provides the genomic coordinates and size of any segmental aberration. The logR segmentation algorithm of haplarithmisis can be adjusted by changes the gamma values for LogR, in the pregnancy loss study gamma of 14 is used. This value requires optimization for the specific samples that are being analyzed. 
 
-## 4.	MosaicismDetection
+## 4.	Mosaicism detection
 
-## 5.	DataAnalysis_Plotting_Statistics
+## 5.	DataAnalysis, plotting and statistics
 
 ## Miscellaneous
