@@ -22,7 +22,7 @@ The CNV detection script extracts genomic coordinates and aberrant segments base
 ## 4.	Mosaicism detection
 ### 4.1 Paternal/maternal haplotype segmentation 
 
-### 4.2 BAF averaging
+### 4.2 Mean BAF calculation
 
 ### 4.3 Mosacism detection 
 
