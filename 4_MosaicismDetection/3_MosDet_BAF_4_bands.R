@@ -32,7 +32,7 @@ if (AberrationType == "Gain"){
 
   ##Load mosaicism percentage reference files from Conlin et al. 2010.
   
-  MosDet_Gain_4_bands_BAF <- read.delim("/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/1.Paper/Miscarriage_Surfdrive/Submission/Github/4_MosaicismDetection/Refs/MosDet_Gain_4_bands.csv", row.names=1)
+  MosDet_Gain_4_bands_BAF <- read.delim("/Projects/PregnancyLoss/Scripts/Haplarithmisis/Mosaicism_Detection/Refs/MosDet_Gain_4_bands.csv", row.names=1)
   
   zeroAA_AAA <- MosDet_Gain_4_bands_BAF[1,1] - as.numeric(Band4)
   zeroAB_ABA <- MosDet_Gain_4_bands_BAF[2,1] - as.numeric(Band3)
@@ -172,7 +172,7 @@ if (AberrationType == "Gain"){
   
   ##Load mosaicism percentage reference files from Conlin et al. 2010.
   
-  MosDet_Loss_BAF <- read.csv("/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/1.Paper/Miscarriage_Surfdrive/Submission/Github/4_MosaicismDetection/Refs/MosDet_Loss.csv", row.names=1)
+  MosDet_Loss_BAF <- read.csv("/Projects/PregnancyLoss/Scripts/Haplarithmisis/Mosaicism_Detection/Refs/MosDet_Loss.csv", row.names=1)
 
   zeroAA_A <- MosDet_Loss_BAF[1,1] - as.numeric(Band4)
   zeroAB_A <- MosDet_Loss_BAF[2,1] - as.numeric(Band3)
@@ -313,7 +313,7 @@ if (AberrationType == "Gain"){
 
   ##Load mosaicism percentage reference files from Conlin et al. 2010.
   
-  MosDet_Neutral <- read.csv("/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/1.Paper/Miscarriage_Surfdrive/Submission/Github/4_MosaicismDetection/Refs/MosDet_Neutral.csv", row.names=1)
+  MosDet_Neutral <- read.csv("/Projects/PregnancyLoss/Scripts/Haplarithmisis/Mosaicism_Detection/Refs/MosDet_Neutral.csv", row.names=1)
   
   zeroAA_AA <- MosDet_Neutral[1,1] - as.numeric(Band4)
   zeroAB_AA <- MosDet_Neutral[2,1] - as.numeric(Band3)

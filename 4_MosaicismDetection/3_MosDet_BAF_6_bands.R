@@ -25,7 +25,7 @@ Band5   <- "0.13770253960177"
 Band6   <- "0.0115576455189015"
 
 ##Load mosaicism percentage reference files from Conlin et al. 2010.
-MosDet_Gain_6_bands_BAF <- read.delim("/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/1.Paper/Miscarriage_Surfdrive\ kopie/Submission/Github/4_MosaicismDetection/Refs/MosDet_Gain_6_bands_BAF.csv", row.names=1)
+MosDet_Gain_6_bands_BAF <- read.delim("/Projects/PregnancyLoss/Scripts/Haplarithmisis/Mosaicism_Detection/Refs/MosDet_Gain_6_bands_BAF.csv", row.names=1)
 
   
   zeroAA_AAA <- MosDet_Gain_6_bands_BAF[1,1] - as.numeric(Band6)

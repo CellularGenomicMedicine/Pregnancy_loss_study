@@ -43,7 +43,7 @@ if (AberrationType == "Loss"){
 ###When aberration is a loss
 
 ##Load mosaicism percentage reference files from Conlin et al. 2010.
-MosDet_Loss_PatMat <- read.csv("/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/1.Paper/Miscarriage_Surfdrive/Submission/Github/4_MosaicismDetection/Refs/MosDet_Loss.csv", row.names=1)
+MosDet_Loss_PatMat <- read.csv("/Projects/PregnancyLoss/Scripts/Haplarithmisis/Mosaicism_Detection/Refs/MosDet_Loss.csv", row.names=1)
     
   if (Parent == "Mother"){
   
@@ -235,7 +235,7 @@ MosDet_Loss_PatMat <- read.csv("/Users/G10039937/Surfdrive/ClinicalGenetics/Misc
 ###When aberration is a gain 
 
 ##Load mosaicism percentage reference files from Conlin et al. 2010.
-MosDet_Gain_PatMat <- read.delim("/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/Paper/1.Paper/Miscarriage_Surfdrive/Submission/Github/4_MosaicismDetection/Refs/MosDet_Gain_4_bands.csv", row.names=1)
+MosDet_Gain_PatMat <- read.delim("/Projects/PregnancyLoss/Scripts/Haplarithmisis/Mosaicism_Detection/Refs/MosDet_Gain_4_bands.csv", row.names=1)
   
     if (Parent == "Mother"){
     
