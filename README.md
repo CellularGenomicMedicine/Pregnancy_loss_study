@@ -21,11 +21,18 @@ The CNV detection script extracts genomic coordinates and aberrant segments base
 
 ## 4.	Mosaicism detection
 ### 4.1 Paternal/maternal haplotype segmentation 
+The automated segmentation script extracts genomic coordinates and parental haplotyping data values leveraged and utilized by haplarithmisis. 
+The extracted data consists of grouped P1, P2, M1, M2 haplotyping values, genomic coordinates, length and cumulative length. 
+For mosaicism detection the genomic coordinates can be used for the 4.2 mean BAF calculations to indicate the region of interest or the P1, P2, M1, M2 values can be used directly for 4.3 mosaicism detection in the presence of maternal contamination.  
 
 ### 4.2 Mean BAF calculation
+This script calculates the mean BAF values for the genomic coordinates of interest (obtained from 4.1 automated segmentation). It is required to indicate whether the aberration or region of interest shows 4 or 6 bands in the BAF plot. 
+Resulting mean BAF values can be used in 4.3 to detect mosaicism degree in percentage. 
 
 ### 4.3 Mosacism detection 
-Ref conlin et all paper
+These scripts compare either 1) mean BAF values (4 or 6 bands BAF), or 2) P1, P2, M1, M2 haplotyping values, to mosaicism tables from Conlin, et al., 2010. 
+In general, BAF values (1) are utilized for the mosaicism calculation. Only when maternal contamination is present, as identified in haplarithm plots, are the haplotyping values (2) utilized, to compensate for the disturbance in BAF values caused by maternal contamination. 
+
 ## 5.	Data analysis, visualization and statistics
 
 ## Miscellaneous
