@@ -15,7 +15,6 @@
 #         This information can be used to extract the genomic coordinates and/or maternal and paternal haplotyping values that can be used 
 #         to calculate the mosaicism degree of detected aberrations. 
 
-
 ###########################################################################################################################
 
 rm(list=ls(all=T))
