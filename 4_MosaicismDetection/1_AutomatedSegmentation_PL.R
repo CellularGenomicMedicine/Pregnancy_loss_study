@@ -1,23 +1,36 @@
+###########################################################################################################################
+# Author: Rick Essers (Adapted from script by Masoud Zamani Esteki)
+# Lab: Cellular Genomic Medicine, Clinical Genetics, Maastricht University Medical Center (MUMC+)
+
+# script purpose: To extract genomic coordinates and haplotyping data values of detected aberrations. 
+#                 This data is can be for the calculation of mosaicism degree (in percentage) of aberrations. 
+#                 The haplotyping data consists of the P1, P2, M1, M2, values that represent the paternal and maternal contribution to the genome. 
+#                 and aberration. 
+
+# input: P1, P2, M1, M2, P1Seg, P2Seg, M1Seg, M2Seg, LogRSeg .txt files for a specific pregnancy loss family. 
+#        These files are produced by haplarithmisis. 
+
+# output: Per fetal DNA sample (Extraembroynic mesoderm and chorionic villi), a file is produced containing all values of P1, P2, M1, M2, 
+#         grouped together by value. In addition, the genomic coordinates, length, cumulative length, start and stop values are provided. 
+#         This information can be used to extract the genomic coordinates and/or maternal and paternal haplotyping values that can be used 
+#         to calculate the mosaicism degree of detected aberrations. 
+
+
+###########################################################################################################################
+
 rm(list=ls(all=T))
 require(pastecs)
 
-Family = "PL1758.adj" 
-Indication = "Polyploid"
-Group = "SPL"
+Family = "PL0001.adj" 
 
-dataPathInit <- paste0("/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/FinalPlots/AllFams/Abnormal/",Group,"/",Indication,"/")
-outPath <- paste0("/Users/G10039937/Surfdrive/ClinicalGenetics/Miscarriage/FinalPlots/AllFams/Abnormal/",Group,"/",Indication,"/",Family)
+dataPathInit  <- paste0("/Projects/PregnancyLoss/Data/Output/",Family,"/")
+outPath       <- paste0("/Projects/PregnancyLoss/Data/Output/",Family,"/")
 
 outPathOutput <- paste(outPath,"/OutputAutSeg/",sep="")
 if (!file.exists(outPathOutput)){
   dir.create(outPathOutput)
 }
 
-source("/Users/G10039937/Surfdrive/ClinicalGenetics/MosaicismDetection/distcompmedseg2.R")
-Params <- read.table("/Users/G10039937/Surfdrive/ClinicalGenetics/MosaicismDetection/Ranges.txt",sep="\t",header=T,stringsAsFactors=F,row.names = 1)
-
-###Do all fams 
-###for(Family in Families){
 
 	dataPath = paste(dataPathInit,Family,"/",sep="")
 	P1 <- read.table(paste(dataPath,"P1_",Family,".txt",sep=""),header=T,sep="\t",stringsAsFactors=F)
@@ -32,26 +45,13 @@ Params <- read.table("/Users/G10039937/Surfdrive/ClinicalGenetics/MosaicismDetec
 	logRsSeg <- read.table(paste(dataPath,Family,"_gammaSc14_gammaMc14_logRseg.txt",sep=""),header=T,sep="\t",stringsAsFactors=F)
 	
 	Inds = colnames(logRsSeg)[c(grep("E*_Bl*",colnames(logRsSeg)),grep("Affected*",colnames(logRsSeg)))]
-#	Inds = Inds[-c(grep("ther",Inds))]
 
 	dMats <- matrix(NA,length(Inds),23)
 	colnames(dMats) <- unique(logRsSeg$Chr) 
 	dMats[,1] <- Inds 
 	dPats <- dMats
-
-	###
-	#chr     <- "2"
-	#ind     <- "Affected_PL2074.adj"
-	#P1_ind  <- "Affected_PL2074.adj"
 	
-	#ind     <- "E01_Bl01_PL2074.adj"
-	#P1_ind  <- "E01_Bl01_PL2074.adj"
-	
-	#chr <- "1"
-  ###
-	
-	
-	ind <- "E01_Bl01_PL2451.adj"
+	ind <- "E01_Bl01"
 	chr <- "1" 
 	
 for(ind in Inds){
@@ -176,7 +176,5 @@ print(ind)
 	write.table(PatMatBAFSeg,paste(outPathOutput,ind,"_PatMatBAFSeg.txt",sep=""),sep="\t",col.names=T,row.names=F,quote=F)
 	
 }#end ind loop	
-	
-print(Family)
-#
-#} #end Family loop
+
+
