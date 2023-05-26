@@ -31,8 +31,9 @@ In general, BAF values (1) are utilized for the mosaicism calculation. Only when
 
 ## 5.	Data analysis, visualization and statistics
 Scripts for all main and extended data figures of the PL study. 
-Main figure 1A, B, C, D, main figure 2, B, and extended data figure 2 A, B, C, D.
+Main figure 1 A, B, C, D, main figure 2 B, and extended data figure 2 A, B, C, D.
 
 ## Statistical analysis
+
 
 ## Miscellaneous
