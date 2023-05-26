@@ -29,7 +29,7 @@ Resulting mean BAF values can be used in 4.3 to detect mosaicism degree in perce
 These scripts compare either 1) mean BAF values (4 or 6 bands BAF), or 2) P1, P2, M1, M2 haplotyping values, to mosaicism tables from Conlin, et al., 2010 (PMID:20053666). 
 In general, BAF values (1) are utilized for the mosaicism calculation. Only when maternal contamination is present, as identified in haplarithm plots, are the haplarithm values (2) utilized, to compensate for the disturbance in BAF values caused by maternal contamination. 
 
-## 5.	Data analysis, visualization and statistics
+## 5.	Data analysis and visualization
 Scripts for all main and extended data figures of the PL study. 
 Main figure 1 A, B, C, D, main figure 2 B, and extended data figure 2 A, B, C, D.
 
