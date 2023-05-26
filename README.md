@@ -30,6 +30,8 @@ These scripts compare either 1) mean BAF values (4 or 6 bands BAF), or 2) P1, P2
 In general, BAF values (1) are utilized for the mosaicism calculation. Only when maternal contamination is present, as identified in haplarithm plots, are the haplarithm values (2) utilized, to compensate for the disturbance in BAF values caused by maternal contamination. 
 
 ## 5.	Data analysis, visualization and statistics
-Scripts for main and extended data figures, including statistical analysis. 
+Scripts for all main and extended data figures of the PL study. 
+
+##Statistical analysis
 
 ## Miscellaneous
